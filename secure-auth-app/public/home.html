@@ -1,0 +1,142 @@
+<!-- home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Secure App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar h2 {
+            margin: 0;
+        }
+        .navbar-buttons button {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+            border-radius: 4px;
+            padding: 8px 15px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .navbar-buttons button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .welcome-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .profile-section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .profile-info {
+            margin-top: 20px;
+        }
+        .profile-info p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .profile-info strong {
+            font-weight: 600;
+            display: inline-block;
+            width: 100px;
+        }
+        .error-message {
+            color: #e74c3c;
+            background-color: #fadbd8;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .not-logged-in {
+            text-align: center;
+            padding: 50px 0;
+        }
+        .not-logged-in a {
+            display: inline-block;
+            background-color: #2c3e50;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        .not-logged-in a:hover {
+            background-color: #1a252f;
+        }
+        .loading {
+            text-align: center;
+            padding: 50px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h2>Secure App</h2>
+        <div class="navbar-buttons">
+            <button id="logout-btn">Logout</button>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div id="error-message" class="error-message"></div>
+        
+        <div id="loading" class="loading">
+            <p>Loading...</p>
+        </div>
+        
+        <div id="not-logged-in" class="not-logged-in" style="display: none;">
+            <h2>You are not logged in</h2>
+            <p>Please login to access this page</p>
+            <a href="login.html">Login</a>
+        </div>
+        
+        <div id="logged-in-content" style="display: none;">
+            <div class="welcome-card">
+                <h1>Welcome, <span id="username-display"></span>!</h1>
+                <p>You are now securely logged in to your account.</p>
+            </div>
+            
+            <div class="profile-section">
+                <h2>Your Profile</h2>
+                <div class="profile-info">
+                    <p><strong>Username:</strong> <span id="profile-username"></span></p>
+                    <p><strong>Email:</strong> <span id="profile-email"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Replace inline script with external script -->
+    <script src="/js/home.js"></script>
+</body>
+</html>

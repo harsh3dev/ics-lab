@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSRF Proof of Concept</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f7f9fc;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        .panel {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        select {
+            height: 40px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        button.danger {
+            background-color: #e74c3c;
+        }
+        button.danger:hover {
+            background-color: #c0392b;
+        }
+        .param-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        .param-row input {
+            margin-bottom: 0;
+            flex: 1;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .action-row {
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        #pocPreview {
+            margin-top: 30px;
+        }
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSRF Testing Tool</h1>
+    <p>This tool helps generate a Cross-Site Request Forgery (CSRF) proof of concept to test vulnerabilities in web applications.</p>
+    
+    <!-- Configuration Form -->
+    <div id="config" class="panel">
+        <h2>Test Configuration</h2>
+        <form id="configForm">
+            <div>
+                <label for="targetUrl">Target URL:</label>
+                <input type="text" id="targetUrl" size="50" value="http://localhost:3000/api/vulnerable/update-email" required>
+            </div>
+            <div>
+                <label for="requestMethod">Request Method:</label>
+                <select id="requestMethod">
+                    <option value="POST">POST</option>
+                    <option value="GET">GET</option>
+                    <option value="PUT">PUT</option>
+                </select>
+            </div>
+            <div id="parametersSection">
+                <div class="section-title">
+                    <h3>Parameters</h3>
+                </div>
+                <div id="paramsList">
+                    <div class="param-row">
+                        <input type="text" class="param-name" placeholder="Parameter name" value="newEmail">
+                        <input type="text" class="param-value" placeholder="Value" value="hacked@attacker.com">
+                        <button type="button" class="remove-param danger">Remove</button>
+                    </div>
+                </div>
+                <button type="button" id="addParam">Add Parameter</button>
+            </div>
+            <div class="action-row">
+                <button type="button" id="generatePoc">Generate PoC</button>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Generated POC Preview -->
+    <div id="pocPreview" class="panel" style="display:none;">
+        <h2>Generated CSRF PoC</h2>
+        <pre id="pocCode"></pre>
+        <div class="action-row">
+            <button id="copyPoc">Copy to Clipboard</button>
+            <button id="testNow" style="background-color: #e74c3c; font-weight: bold;">Test Attack Now</button>
+        </div>
+    </div>
+    
+    <!-- Hidden form that will be created dynamically -->
+    <div id="csrfContainer"></div>
+    
+    <!-- Include the external JavaScript file -->
+    <script src="csrf-test.js"></script>
+</body>
+</html>
