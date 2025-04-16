@@ -8,57 +8,49 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f5f5;
+            background-color: #121212;
             margin: 0;
             padding: 0;
-            color: #333;
+            color: #e0e0e0;
         }
         .navbar {
-            background-color: #2c3e50;
-            color: white;
+            background-color: #1f1f1f;
+            color: #e0e0e0;
             padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-radius: 8px;
         }
         .navbar h2 {
             margin: 0;
         }
         .navbar-buttons button {
-            background-color: transparent;
-            color: white;
-            border: 1px solid white;
-            border-radius: 4px;
+            background-color: #333;
+            color: #e0e0e0;
+            border: 1px solid #555;
+            border-radius: 8px;
             padding: 8px 15px;
             cursor: pointer;
             margin-left: 10px;
         }
         .navbar-buttons button:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: #555;
         }
         .container {
             max-width: 1000px;
             margin: 40px auto;
             padding: 0 20px;
         }
-        .welcome-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        .welcome-card, .profile-section {
+            background-color: #1f1f1f;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
             padding: 30px;
             margin-bottom: 30px;
         }
-        .profile-section {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-        }
         h1, h2 {
-            color: #2c3e50;
-        }
-        .profile-info {
-            margin-top: 20px;
+            color: #e0e0e0;
         }
         .profile-info p {
             margin: 10px 0;
@@ -70,10 +62,10 @@
             width: 100px;
         }
         .error-message {
-            color: #e74c3c;
-            background-color: #fadbd8;
+            color: #ff6b6b;
+            background-color: #2c1f1f;
             padding: 10px;
-            border-radius: 4px;
+            border-radius: 8px;
             margin-bottom: 20px;
             display: none;
         }
@@ -83,15 +75,15 @@
         }
         .not-logged-in a {
             display: inline-block;
-            background-color: #2c3e50;
-            color: white;
+            background-color: #333;
+            color: #e0e0e0;
             text-decoration: none;
             padding: 10px 20px;
-            border-radius: 4px;
+            border-radius: 8px;
             margin-top: 20px;
         }
         .not-logged-in a:hover {
-            background-color: #1a252f;
+            background-color: #555;
         }
         .loading {
             text-align: center;
