@@ -15,6 +15,9 @@ const uuid = require('uuid');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Enable trust proxy to correctly handle X-Forwarded-For headers
+app.set('trust proxy', 1); // 1 indicates trusting the first proxy
+
 // Initialize database
 const db = new sqlite3.Database('./auth.db', (err) => {
   if (err) {
@@ -90,6 +93,13 @@ app.use(session({
     maxAge: 1000 * 60 * 60 * 2 // 2 hours
   }
 }));
+
+// Add logging to debug session issues
+app.use((req, res, next) => {
+  console.log('Session ID:', req.session.id);
+  console.log('Session data:', req.session);
+  next();
+});
 
 // CSRF protection
 const csrfProtection = csrf({ cookie: { httpOnly: true, sameSite: 'strict' } });
